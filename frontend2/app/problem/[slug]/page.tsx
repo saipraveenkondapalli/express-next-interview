@@ -68,7 +68,7 @@ const problemPage = async ({ params }: IProblemParams) => {
                     </TabPanel>
                   ))}
                 <TabPanel key="company-panel">
-                  <CompanyTable company={company} />
+                  <CompanyTable companies={company} />
                 </TabPanel>
               </TabPanels>
             </Tabs>

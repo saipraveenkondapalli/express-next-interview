@@ -10,12 +10,9 @@ interface SearchProps {
 function Search(props: SearchProps) {
   return (
     <InputGroup>
-      <InputLeftElement
-        pointerEvents="none"
-        children={
-          <CiSearch color="#abbfd4" fontSize={20} style={{ marginTop: 10 }} />
-        }
-      />
+      <InputLeftElement pointerEvents="none">
+        <CiSearch color="#abbfd4" fontSize={20} style={{ marginTop: 10 }} />
+      </InputLeftElement>
       <Input
         borderRadius={"xl"}
         type="text"

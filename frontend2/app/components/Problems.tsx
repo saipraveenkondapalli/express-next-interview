@@ -17,7 +17,7 @@ function Problems({ filters, setFilters }: problemProps) {
 
   React.useEffect(() => {
     setTotalPages(Math.ceil(count / filters.perPage));
-  }, [count, filters.per_page]);
+  }, [count, filters.perPage]);
 
   const setPageFunction = (page: number) => {
     setFilters({ ...filters, page });

@@ -28,7 +28,7 @@ export function useCompaniesCategories(url: string): CompanyCategoryHook {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [url]);
 
   return { count, data: data };
 }
