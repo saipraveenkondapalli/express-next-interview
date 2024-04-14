@@ -24,14 +24,17 @@ const corsOptions: CorsOptionsDelegate = (req, callback) => {
 
 // settings
 app.options("*", cors());
-app.use(cors(corsOptions));
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/private", postsRouter);
-app.use("/api/public/problems", problemRouter);
+app.use("/api/public/problems", cors(corsOptions), problemRouter);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the API!");
+});
 
 app.use(errorMiddleware);
 export default app;

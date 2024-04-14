@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": "node dist/src/server.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node --ignore '*.test.ts' src/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
