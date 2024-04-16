@@ -17,7 +17,8 @@ const errorMiddleware = (
   if (err instanceof BadCorsError) {
     return res.status(403).json({ message: err.message });
   } else if (err instanceof UnauthorizedError) {
-    return res.status(401).json({ message: "Unauthorized" });
+    console.log(err);
+    return res.status(401).json({ message: err });
   }
 
   return res.status(500).json({ message: "Internal Server Error" });
