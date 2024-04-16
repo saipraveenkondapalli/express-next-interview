@@ -14,8 +14,6 @@ const corsWhiteList = (process.env.CORS_WHITE_LIST || "").split(",");
 const corsOptions: CorsOptionsDelegate = (req, callback) => {
   // using origin to check if the request is from the white list
 
-  console.log("req.headers", req.headers);
-
   const origin = (
     req.headers.origin ||
     req.headers["x-forwarded-host"]?.toString() ||
@@ -23,8 +21,6 @@ const corsOptions: CorsOptionsDelegate = (req, callback) => {
   )
     .replace(/^https?:\/\//, "") // Remove http:// or https:// prefix
     .replace(/\/$/, ""); // Remove trailing /
-
-  console.log("origin", origin);
 
   if (!origin || !corsWhiteList.includes(origin)) {
     return callback(new BadCorsError("Bad Cors Request"), { origin: false });
