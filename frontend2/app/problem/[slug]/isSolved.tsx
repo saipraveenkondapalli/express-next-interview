@@ -1,4 +1,5 @@
 "use client";
+
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/app/UserContext";
 import axios from "axios";
@@ -19,21 +20,32 @@ function IsSolved(props: IIsSolvedProps) {
   const [problemSolved, setProblemSolved] = useState<boolean>(false);
 
   useEffect(() => {
-    if (slug) {
-      axios
-        .get<IIsSolvedResponse>("/api/private/progress/is-solved/" + slug)
-        .then((res) => {
-          setProblemSolved(!!res.data.isSolved);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
+    const getIsSolved = async () => {
+      if (slug) {
+        axios
+          .get<IIsSolvedResponse>("/backend/isSolved", {
+            params: {
+              slug,
+            },
+          })
+          .then((res) => {
+            setProblemSolved(!!res.data.isSolved);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    };
+    getIsSolved();
   }, [slug]);
 
-  const addToSolvedProblems = () => {
+  if (!isUserLoggedIn) {
+    return null;
+  }
+
+  const addToSolvedProblems = async () => {
     axios
-      .put("/api/private/progress/add-problem/" + slug)
+      .put("/backend/add-problem/?slug=" + slug)
       .then((res) => {
         console.log(res.data);
         setProblemSolved(true);
@@ -42,10 +54,6 @@ function IsSolved(props: IIsSolvedProps) {
         console.error(err);
       });
   };
-
-  if (!isUserLoggedIn) {
-    return null;
-  }
 
   return isUserLoggedIn && problemSolved ? (
     <IoCheckmarkCircle fontSize={30} color={"green"} />

@@ -26,11 +26,6 @@ interface IProblemCardProps {
   data: ProblemResponseProps;
 }
 
-interface IProblemSolvedProps {
-  slug: string;
-  isSolved: boolean;
-}
-
 function ProblemCard({ data }: IProblemCardProps) {
   const { isUserLoggedIn } = useContext(UserContext);
 
@@ -41,7 +36,7 @@ function ProblemCard({ data }: IProblemCardProps) {
       const checkProblemsSolved = async () => {
         const slugs = data.problems.map((problem) => problem.linkName);
         axios
-          .get("/api/private/progress/bulk-are-solved", {
+          .get("/backend/bulk-solved", {
             params: { slugs },
           })
           .then((res) => {

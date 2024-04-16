@@ -1,7 +1,4 @@
-import {
-  getSession,
-  withMiddlewareAuthRequired,
-} from "@auth0/nextjs-auth0/edge";
+import { withMiddlewareAuthRequired } from "@auth0/nextjs-auth0/edge";
 import { NextRequest, NextResponse } from "next/server";
 
 export default withMiddlewareAuthRequired(async function middleware(
@@ -17,19 +14,19 @@ export default withMiddlewareAuthRequired(async function middleware(
     return NextResponse.next();
   }
 
-  const response = NextResponse.next({
-    request: {
-      headers: new Headers(req.headers),
-    },
-  });
+  // const response = NextResponse.next({
+  //   request: {
+  //     headers: new Headers(req.headers),
+  //   },
+  // });
 
-  const user = await getSession(req, response);
-  const token = user?.accessToken;
-  console.log(token);
-  response.headers.set("Authorization", `Bearer ${token}`);
-  return response;
+  // const user = await getSession(req, response);
+  // const token = user?.accessToken;
+  // console.log(token);
+  // response.headers.set("Authorization", `Bearer ${token}`);
+  // return response;
 });
 
 export const config = {
-  matcher: ["/dashboard", "/api/private/:path*"],
+  matcher: ["/dashboard"],
 };
