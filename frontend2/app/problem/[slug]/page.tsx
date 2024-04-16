@@ -9,6 +9,7 @@ import { api } from "@/app/services/api";
 import { LeetCode } from "leetcode-query";
 import ProblemContent from "@/app/problem/[slug]/problemContent";
 import IsSolved from "@/app/problem/[slug]/isSolved";
+import YtVideos from "@/app/problem/[slug]/YtVideos";
 
 const getProblemData = async (slug: string) => {
   const res = await api.get<ProblemProps>(
@@ -93,7 +94,7 @@ const problemPage = async ({ params }: IProblemParams) => {
                 )}
 
                 <TabPanel key="yt-panel">
-                  {/*<YtVideos name={name} />*/}
+                  <YtVideos name={name} />
                 </TabPanel>
                 {code &&
                   code.map((item, index) => (
