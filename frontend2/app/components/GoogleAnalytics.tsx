@@ -11,7 +11,7 @@ const GoogleAnalytics = () => {
    window.dataLayer = window.dataLayer || [];
    function gtag(){dataLayer.push(arguments);}
    gtag('js', new Date());
-   gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}', { 'send_page_view': true });
+   gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
             `,
         }}
       />

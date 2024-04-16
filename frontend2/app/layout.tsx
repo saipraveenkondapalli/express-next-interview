@@ -23,8 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleAnalytics />
-
+      <head>
+        <GoogleAnalytics />
+      </head>
       <UserProvider>
         <body>
           <Providers>
