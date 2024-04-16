@@ -9,10 +9,13 @@ import {
   ModalHeader,
   ModalOverlay,
   Table,
+  TableContainer,
   Tag,
   Tbody,
   Td,
   Text,
+  Th,
+  Thead,
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -41,14 +44,12 @@ function ProblemCard({ data }: IProblemCardProps) {
           })
           .then((res) => {
             setProblemsSolved(res.data);
-            console.log(res.data);
           })
           .catch((e) => {
             console.log(e);
           });
       };
       checkProblemsSolved();
-      console.log("User is logged in");
     }
   }, [isUserLoggedIn, data.problems]);
 
@@ -56,54 +57,64 @@ function ProblemCard({ data }: IProblemCardProps) {
   const problems = data.problems;
   return (
     problems && (
-      <Box mt={2}>
+      <TableContainer>
         <Table variant="unstyled">
+          <Thead>
+            <Tr>
+              <Th>S.No</Th>
+              <Th>Name</Th>
+              <Th>{isUserLoggedIn && problemsSolved && "Solved"}</Th>
+              <Th>Level</Th>
+            </Tr>
+          </Thead>
           <Tbody>
             {problems.map((problem, index) => (
-              <Tr key={index}>
-                <Td>
-                  <Box
-                    bg="#E8EDF5"
-                    p={4}
-                    h={"auto%"}
-                    width={"50%"}
-                    rounded={7}
-                    fontSize={["xl", "2xl"]}
-                    color="#4A709C"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    {index + 1 + offset}{" "}
-                  </Box>
-                </Td>
-                <Td maxW="lg">
-                  <Box>
-                    <Heading
-                      as={ChakraLink}
-                      fontSize={["sm", "2xl"]}
-                      fontWeight="500"
-                      href={`/problem/${problem.linkName}`}
+              <>
+                <Tr key={index}>
+                  <Td>
+                    <Box
+                      bg="#E8EDF5"
+                      p={4}
+                      h={"auto%"}
+                      width={"50%"}
+                      rounded={7}
+                      fontSize={["xl", "2xl"]}
+                      color="#4A709C"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="center"
                     >
-                      {problem.name}
-                    </Heading>
-                    <Text color={"#4A709C"} fontSize={["sm", "md"]}>
-                      Companies: {problem.companies.length}
-                    </Text>
-                    <DisplayCompanies companies={problem.companies} />
-                  </Box>
-                </Td>
-                <Td>
-                  {problemsSolved && problemsSolved[problem.linkName] && (
-                    <IoCheckmarkCircle fontSize={25} color={"green"} />
-                  )}
-                </Td>
-                <Td>{problem.level}</Td>
-              </Tr>
+                      {index + 1 + offset}{" "}
+                    </Box>
+                  </Td>
+                  <Td maxW="lg">
+                    <Box>
+                      <Heading
+                        as={ChakraLink}
+                        fontSize={["sm", "2xl"]}
+                        fontWeight="500"
+                        href={`/problem/${problem.linkName}`}
+                      >
+                        {problem.name}
+                      </Heading>
+                      <Text color={"#4A709C"} fontSize={["sm", "md"]}>
+                        Companies: {problem.companies.length}
+                      </Text>
+                      <DisplayCompanies companies={problem.companies} />
+                    </Box>
+                  </Td>
+                  <Td>
+                    {problemsSolved && problemsSolved[problem.linkName] && (
+                      <IoCheckmarkCircle fontSize={25} color={"green"} />
+                    )}
+                  </Td>
+                  <Td>{problem.level}</Td>
+                </Tr>
+              </>
             ))}
           </Tbody>
         </Table>
-      </Box>
+      </TableContainer>
     )
   );
 }
