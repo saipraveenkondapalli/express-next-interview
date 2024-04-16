@@ -1,7 +1,7 @@
-import { Request } from "express";
+import { Request as ExpressRequest } from "express";
 
-export default interface RequestWithUser extends Request {
-  user?: {
+export default interface Request extends ExpressRequest {
+  user: {
     email?: string;
     iss?: string;
     sub?: string;

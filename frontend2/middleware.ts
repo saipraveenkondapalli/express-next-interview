@@ -7,8 +7,14 @@ import { NextRequest, NextResponse } from "next/server";
 export default withMiddlewareAuthRequired(async function middleware(
   req: NextRequest,
 ) {
+  // If the request is to the /api/auth endpoint, we don't need to add the Authorization header
   if (req.nextUrl.pathname.startsWith("/api/auth")) {
     return;
+  }
+
+  // If the request is to the /dashboard endpoint, we don't need to add the Authorization header
+  if (req.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.next();
   }
 
   const response = NextResponse.next({
@@ -19,12 +25,10 @@ export default withMiddlewareAuthRequired(async function middleware(
 
   const user = await getSession(req, response);
   const token = user?.accessToken;
-  console.log("Headers", req.headers);
   response.headers.set("Authorization", `Bearer ${token}`);
-
   return response;
 });
 
 export const config = {
-  matcher: ["/private/:path*", "/api/posts/:path*"],
+  matcher: ["/dashboard", "/api/private/:path*"],
 };

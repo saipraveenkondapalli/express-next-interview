@@ -1,0 +1,33 @@
+.problem-description {
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+.problem-description pre {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #edf2f7;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.42857;
+    padding: 10px;
+    overflow: auto;
+}
+
+.problem-description code {
+    font-size: 14px;
+    background-color: #edf2f7;
+    border: none;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+.problem-description img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+
+}
+
+

@@ -6,12 +6,13 @@ import CustomButton from "./CustomButton";
 
 import { BiSolidCircleThreeQuarter } from "react-icons/bi";
 import { FiMenu } from "react-icons/fi";
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useContext } from "react";
+import { UserContext } from "@/app/UserContext";
 
 function Navbar() {
   const { isOpen, onToggle } = useDisclosure(); // Using useDisclosure for managing mobile menu state
-  const { user, isLoading, error } = useUser();
-  const isLoggedIn = !!user;
+
+  const { isUserLoggedIn: isLoggedIn } = useContext(UserContext);
 
   return (
     <>

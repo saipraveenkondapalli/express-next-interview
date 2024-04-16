@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,

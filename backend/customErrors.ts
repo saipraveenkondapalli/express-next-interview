@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { UnauthorizedError } from "express-jwt";
 
 class BadCorsError extends Error {
   constructor(message: string) {
@@ -6,6 +7,7 @@ class BadCorsError extends Error {
     this.name = "BadCorsError";
   }
 }
+
 const errorMiddleware = (
   err: Error,
   req: Request,
@@ -14,7 +16,10 @@ const errorMiddleware = (
 ) => {
   if (err instanceof BadCorsError) {
     return res.status(403).json({ message: err.message });
+  } else if (err instanceof UnauthorizedError) {
+    return res.status(401).json({ message: "Unauthorized" });
   }
+
   return res.status(500).json({ message: "Internal Server Error" });
 };
 

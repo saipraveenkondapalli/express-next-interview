@@ -1,5 +1,6 @@
-import * as React from "react";
-import { Dispatch, SetStateAction } from "react";
+"use client";
+
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useProblems from "../hooks/useProblems";
 import ProblemCard from "./ProblemCard";
 import ProblemSkeleton from "./ProblemSkeleton";
@@ -13,9 +14,9 @@ interface problemProps {
 
 function Problems({ filters, setFilters }: problemProps) {
   const { data, loading, count } = useProblems(filters);
-  const [totalPages, setTotalPages] = React.useState<number>(0);
+  const [totalPages, setTotalPages] = useState<number>(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTotalPages(Math.ceil(count / filters.perPage));
   }, [count, filters.perPage]);
 

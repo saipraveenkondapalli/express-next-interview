@@ -1,8 +1,7 @@
-import * as React from "react";
 import {
   Box,
   Heading,
-  Link,
+  Link as ChakraLink,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -18,12 +17,39 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { company, ProblemResponseProps } from "@/app/hooks/useProblems";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "@/app/UserContext";
+import axios from "axios";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 interface IProblemCardProps {
   data: ProblemResponseProps;
 }
 
+interface IProblemSolvedProps {
+  slug: string;
+  isSolved: boolean;
+}
+
 function ProblemCard({ data }: IProblemCardProps) {
+  const { isUserLoggedIn } = useContext(UserContext);
+
+  const [problemsSolved, setProblemsSolved] = useState();
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      const checkProblemsSolved = async () => {
+        const slugs = data.problems.map((problem) => problem.linkName);
+        const res = await axios.get("/api/private/progress/bulk-are-solved", {
+          params: { slugs },
+        });
+        setProblemsSolved(res.data);
+      };
+      checkProblemsSolved();
+      console.log("User is logged in");
+    }
+  }, [isUserLoggedIn, data.problems]);
+
   const offset = (data.page - 1) * data.perPage;
   const problems = data.problems;
   return (
@@ -46,18 +72,16 @@ function ProblemCard({ data }: IProblemCardProps) {
                     alignItems="center"
                     justifyContent="center"
                   >
-                    {index + 1 + offset}
+                    {index + 1 + offset}{" "}
                   </Box>
                 </Td>
                 <Td maxW="lg">
                   <Box>
                     <Heading
-                      as={Link}
+                      as={ChakraLink}
                       fontSize={["sm", "2xl"]}
                       fontWeight="500"
                       href={`/problem/${problem.linkName}`}
-                      rel={"noopener noreferrer"}
-                      target={"_blank"}
                     >
                       {problem.name}
                     </Heading>
@@ -66,6 +90,11 @@ function ProblemCard({ data }: IProblemCardProps) {
                     </Text>
                     <DisplayCompanies companies={problem.companies} />
                   </Box>
+                </Td>
+                <Td>
+                  {problemsSolved && problemsSolved[problem.linkName] && (
+                    <IoCheckmarkCircle fontSize={25} color={"green"} />
+                  )}
                 </Td>
                 <Td>{problem.level}</Td>
               </Tr>
@@ -89,13 +118,11 @@ function DisplayCompanies({ companies }: IDisplayCompaniesProps) {
       <>
         <Text color={"#4A709C"} fontSize={["sm", "md"]}>
           {companies.slice(0, 5).map((company) => (
-            <>
-              <CompanyText company={company} />
-            </>
+            <CompanyText key={company.name} company={company} />
           ))}
-          <Link onClick={onOpen} colorScheme={"blue"}>
+          <ChakraLink onClick={onOpen} colorScheme={"blue"}>
             ...more
-          </Link>
+          </ChakraLink>
         </Text>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -112,9 +139,9 @@ function DisplayCompanies({ companies }: IDisplayCompaniesProps) {
   }
   return (
     <Text color={"#4A709C"} fontSize={["sm", "md"]}>
-      {companies.map((company) => (
+      {companies.map((company, index) => (
         <>
-          <CompanyText company={company} />
+          <CompanyText key={index} company={company} />
         </>
       ))}
     </Text>

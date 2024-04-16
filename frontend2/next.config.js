@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const { headers } = require("next/headers");
 
 const nextConfig = {
   async rewrites() {
@@ -14,17 +13,17 @@ const nextConfig = {
       },
     ];
   },
-  async headers() {
-    return [
-      {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Origin", value: "$1" },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: "/api/:path*",
+  //       headers: [
+  //         { key: "Access-Control-Allow-Origin", value: "*" },
+  //         { key: "Origin", value: "$1" },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
