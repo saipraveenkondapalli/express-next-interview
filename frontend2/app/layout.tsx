@@ -6,7 +6,7 @@ import { Providers } from "@/app/providers";
 import Navbar from "@/app/components/navbar";
 import React from "react";
 import Footer from "@/app/components/Footer";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import GoogleAnalytics from "@/app/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <UserProvider>
         <body>
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ""} />
           <Providers>
             <Navbar />
             <main>{children}</main>
