@@ -40,10 +40,17 @@ function ProblemCard({ data }: IProblemCardProps) {
     if (isUserLoggedIn) {
       const checkProblemsSolved = async () => {
         const slugs = data.problems.map((problem) => problem.linkName);
-        const res = await axios.get("/api/private/progress/bulk-are-solved", {
-          params: { slugs },
-        });
-        setProblemsSolved(res.data);
+        axios
+          .get("/api/private/progress/bulk-are-solved", {
+            params: { slugs },
+          })
+          .then((res) => {
+            setProblemsSolved(res.data);
+            console.log(res.data);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       };
       checkProblemsSolved();
       console.log("User is logged in");
