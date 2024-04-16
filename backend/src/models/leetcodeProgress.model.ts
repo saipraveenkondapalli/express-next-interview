@@ -5,7 +5,7 @@ interface ILeetcodeProblemSolved {
 }
 
 interface ILeetcodeProgress {
-  leetcodeUsername: string;
+  // leetcodeUsername: string;
   email: string;
   solvedProblems: ILeetcodeProblemSolved[];
 }
@@ -17,10 +17,10 @@ const LeetcodeProgressSchema = new Schema<ILeetcodeProgress>({
     unique: true,
   },
 
-  leetcodeUsername: {
-    type: String,
-    unique: true,
-  },
+  // leetcodeUsername: {
+  //   type: String,
+  //   unique: true,
+  // },
   solvedProblems: [
     {
       slug: {
