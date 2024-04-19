@@ -1,4 +1,6 @@
-# [Interview Prep Pro](https://interview-prep-pro.vercel.app/)
+# Interview Prep Pro
+
+visit the website: [https://interview-prep-pro.vercel.app](https://interview-prep-pro.vercel.app/)
 
 Interview Prep Pro is a collection of more than 1500 problems from Leetcode, Lintcode, and other online platforms. It is
 designed to help individuals prepare for technical interviews. The problems are categorized by topics such as arrays,
@@ -17,7 +19,7 @@ is a valuable resource to help you ace your next technical interview.
 4. **Detailed Explanation**: Each problem comes with a detailed explanation and solution in Python, or C++.
 5. **Track Progress**: Keep track of your progress by marking problems as solved or unsolved.
 
-### Tech Stack
+## Tech Stack
 
 - **Frontend**: React, Next.js, Chakra UI, TypeScript, Auth0.
 - **Backend**: Node.js, Express, MongoDB, Mongoose, JWT.
