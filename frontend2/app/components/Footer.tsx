@@ -19,12 +19,12 @@ function Footer() {
       >
         <Flex marginBottom="1rem">
           <Link href="/privacy" marginRight="1rem">
-            Privacy
+            Privacy Policy
           </Link>
-          <Link href="/terms" marginRight="1rem">
-            Terms
-          </Link>
-          <Link href="/sitemap">Sitemap</Link>
+          {/*<Link href="/terms" marginRight="1rem">*/}
+          {/*  Terms*/}
+          {/*</Link>*/}
+          {/*<Link href="/sitemap">Sitemap</Link>*/}
         </Flex>
         <Text>&copy; {new Date().getFullYear()} Interview Prep Pro</Text>
       </Flex>
