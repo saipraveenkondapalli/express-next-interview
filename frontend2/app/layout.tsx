@@ -8,6 +8,7 @@ import React from "react";
 import Footer from "@/app/components/Footer";
 import GoogleAnalytics from "@/app/components/google/GoogleAnalytics";
 import GoogleAds from "@/app/components/google/Ads";
+import InfoLinksAds from "@/app/components/InfoLinksAds";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -35,6 +36,7 @@ export default function RootLayout({
                 <main>{children}</main>
                 <Footer/>
             </Providers>
+            <InfoLinksAds/>
             </body>
         </UserProvider>
         </html>
