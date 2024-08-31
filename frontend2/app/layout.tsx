@@ -26,8 +26,8 @@ export default function RootLayout({
         <html lang="en">
         <head>
             <GoogleAnalytics/>
-            <script async={false} src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"
-                    />
+            {/*<script async={false} src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"*/}
+            {/*        />*/}
 
             {/*<GoogleAds/>*/}
         </head>
