@@ -7,8 +7,7 @@ import Navbar from "@/app/components/navbar";
 import React from "react";
 import Footer from "@/app/components/Footer";
 import GoogleAnalytics from "@/app/components/google/GoogleAnalytics";
-import GoogleAds from "@/app/components/google/Ads";
-import InfoLinksAds from "@/app/components/InfoLinksAds";
+import Script from "next/script";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -27,7 +26,10 @@ export default function RootLayout({
         <html lang="en">
         <head>
             <GoogleAnalytics/>
-            <GoogleAds/>
+            <Script src="//dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"
+                    strategy="beforeInteractive"/>
+
+            {/*<GoogleAds/>*/}
         </head>
         <UserProvider>
             <body>
@@ -36,7 +38,6 @@ export default function RootLayout({
                 <main>{children}</main>
                 <Footer/>
             </Providers>
-            <InfoLinksAds/>
             </body>
         </UserProvider>
         </html>
