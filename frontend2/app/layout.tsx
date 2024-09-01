@@ -7,7 +7,6 @@ import Navbar from "@/app/components/navbar";
 import React from "react";
 import Footer from "@/app/components/Footer";
 import GoogleAnalytics from "@/app/components/google/GoogleAnalytics";
-import Script from "next/script";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -28,7 +27,8 @@ export default function RootLayout({
             <GoogleAnalytics/>
             {/*<script async={false} src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"*/}
             {/*        />*/}
-            <script type="text/javascript" src="https://s.skimresources.com/js/269698X1755142.skimlinks.js"></script>
+            <script async={false} type="text/javascript"
+                    src="https://s.skimresources.com/js/269698X1755142.skimlinks.js"></script>
 
             {/*<GoogleAds/>*/}
         </head>
