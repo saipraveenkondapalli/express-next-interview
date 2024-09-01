@@ -28,6 +28,7 @@ export default function RootLayout({
             <GoogleAnalytics/>
             {/*<script async={false} src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"*/}
             {/*        />*/}
+            <script type="text/javascript" src="https://s.skimresources.com/js/269698X1755142.skimlinks.js"></script>
 
             {/*<GoogleAds/>*/}
         </head>
