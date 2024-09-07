@@ -28,7 +28,14 @@ export default function RootLayout({
             {/*<script async={false} src="https://dcbbwymp1bhlf.cloudfront.net/?wbbcd=1088257" data-cfasync="false"*/}
             {/*        />*/}
             <script async={false} type="text/javascript"
-                    src="https://s.skimresources.com/js/269698X1755142.skimlinks.js"></script>
+                    src="https://s.skimresources.com/js/269698X1755142.skimlinks.js">
+
+            </script>
+
+            <script async={false} data-name="BMC-Widget" data-cfasync="false"
+                    src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="saipraveen"
+                    data-description="Support me on Buy me a coffee!" data-message="Donate and Support this project"
+                    data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
             {/*<GoogleAds/>*/}
         </head>
