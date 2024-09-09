@@ -6,13 +6,20 @@ import "dotenv/config";
 import problemRouter from "./routes/problem.router";
 import { BadCorsError, errorMiddleware } from "../customErrors";
 import leetcodeProgressRouter from "./routes/leetcodeProgress.router";
+import announcementRouter from "./routes/announcement.routes";
 
 const app = express();
+
+const debug = process.env.DEBUG || false;
 
 const corsWhiteList = (process.env.CORS_WHITE_LIST || "").split(",");
 
 const corsOptions: CorsOptionsDelegate = (req, callback) => {
   // using origin to check if the request is from the white list
+
+  if(debug){
+    return callback(null, { origin:true });
+  }
 
   const origin = (
     req.headers.origin ||
@@ -38,6 +45,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/public/problems", cors(corsOptions), problemRouter);
 
 app.use("/api/private/progress", cors(corsOptions), leetcodeProgressRouter);
+
+app.use("/api/public/announcements", cors(corsOptions), announcementRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API!");
